@@ -3,7 +3,6 @@ package com.byond.maven.plugin.library;
 import java.io.File;
 import java.io.IOException;
 
-import org.apache.maven.execution.MavenSession;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
@@ -15,7 +14,7 @@ import org.apache.maven.plugins.annotations.ResolutionScope;
 import org.apache.maven.project.MavenProject;
 import org.codehaus.plexus.archiver.zip.ZipArchiver;
 
-@Mojo(name = "package", defaultPhase = LifecyclePhase.PACKAGE, requiresDependencyResolution = ResolutionScope.RUNTIME, threadSafe = true)
+@Mojo(name = "package", defaultPhase = LifecyclePhase.PACKAGE, requiresProject = true, requiresDependencyResolution = ResolutionScope.RUNTIME, threadSafe = true)
 public class PackageMojo extends AbstractMojo {
 	private static final String[] DEFAULT_EXCLUDES = new String[] {};
 	private static final String[] DEFAULT_INCLUDES = new String[] { "**/**" };
@@ -40,9 +39,6 @@ public class PackageMojo extends AbstractMojo {
 
 	@Parameter(defaultValue = "${project.build.directory}", required = true)
 	private File outputDirectory;
-	
-	@Component
-	private MavenSession session;
 
 	@Override
 	public void execute() throws MojoExecutionException, MojoFailureException {
