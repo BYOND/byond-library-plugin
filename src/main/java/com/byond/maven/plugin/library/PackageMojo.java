@@ -76,6 +76,26 @@ public class PackageMojo extends AbstractMojo {
 	}
 	
 	/**
+	 * Gets the maven project used by this Mojo.
+	 * 
+	 * @return The maven project used by this Mojo.
+	 */
+	public MavenProject getProject() {
+		return project;
+	}
+
+	/**
+	 * Sets the maven project used by this Mojo.
+	 * 
+	 * @param project The maven project used by this Mojo.
+	 */
+	public void setProject(MavenProject project) {
+		this.project = project;
+	}
+
+
+
+	/**
 	 * Creates a DM library archive from the provided target directory.
 	 * 
 	 * @return The (potentially empty) DM library archive.
@@ -127,4 +147,6 @@ public class PackageMojo extends AbstractMojo {
 		}
 		return DEFAULT_INCLUDES;
 	}
+	
+	
 }
