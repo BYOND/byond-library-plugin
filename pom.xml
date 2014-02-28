@@ -14,7 +14,7 @@
 	<parent>
 		<groupId>com.byond</groupId>
 		<artifactId>byond-maven-parent</artifactId>
-		<version>1.0.5</version>
+		<version>1.0.8</version>
 	</parent>
 
 	<scm>
@@ -56,13 +56,13 @@
 		<dependency>
 			<groupId>org.apache.maven</groupId>
 			<artifactId>maven-plugin-api</artifactId>
-			<version>3.0.4</version>
+			<version>3.1.1</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.maven</groupId>
 			<artifactId>maven-core</artifactId>
-			<version>3.0.4</version>
+			<version>3.1.1</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
@@ -74,12 +74,12 @@
 		<dependency>
 			<groupId>org.codehaus.plexus</groupId>
 			<artifactId>plexus-archiver</artifactId>
-			<version>2.4.1</version>
+			<version>2.5</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.maven.shared</groupId>
 			<artifactId>maven-verifier</artifactId>
-			<version>1.4</version>
+			<version>1.5</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
@@ -129,26 +129,26 @@
 				</executions>
 			</plugin>
 			<plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-install-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>it-test</id>
-            <phase>pre-integration-test</phase>
-            <goals>
-              <goal>install-file</goal>
-            </goals>
-            <configuration>
-              <file>${basedir}/target/${project.artifactId}-${project.version}.jar</file>
-              <groupId>${project.groupId}</groupId>
-              <artifactId>${project.artifactId}</artifactId>
-              <version>${project.version}</version>
-              <packaging>maven-plugin</packaging>
-              <pomFile>${basedir}/pom.xml</pomFile>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+        			<artifactId>maven-install-plugin</artifactId>
+				<executions>
+			        	<execution>
+			            		<id>it-test</id>
+			            		<phase>pre-integration-test</phase>
+			            		<goals>
+			              			<goal>install-file</goal>
+			            		</goals>
+			            		<configuration>
+			              			<file>${basedir}/target/${project.artifactId}-${project.version}.jar</file>
+			              			<groupId>${project.groupId}</groupId>
+			              			<artifactId>${project.artifactId}</artifactId>
+			              			<version>${project.version}</version>
+			              			<packaging>maven-plugin</packaging>
+			              			<pomFile>${basedir}/pom.xml</pomFile>
+						</configuration>
+			        	</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
 
@@ -165,7 +165,7 @@
 						</reports>
 						<configuration>
 							<requirements>
-								<maven>3.0.4</maven>
+								<maven>3.1.1</maven>
 								<jdk>1.5</jdk>
 							</requirements>
 						</configuration>
