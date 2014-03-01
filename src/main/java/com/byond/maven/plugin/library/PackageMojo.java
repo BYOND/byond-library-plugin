@@ -12,7 +12,7 @@ import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 import org.apache.maven.plugins.annotations.ResolutionScope;
 import org.apache.maven.project.MavenProject;
-import org.codehaus.plexus.archiver.zip.ZipArchiver;
+import org.codehaus.plexus.archiver.Archiver;
 
 /**
  * Packages the target folder up as a BYOND DM library, with extra information required
@@ -25,13 +25,13 @@ public class PackageMojo extends AbstractMojo {
 	private static final String[] DEFAULT_EXCLUDES = new String[] {};
 	private static final String[] DEFAULT_INCLUDES = new String[] { "**/**" };
 	
-	@Component
-	private ZipArchiver archiver;
+	@Component(hint = "zip")
+	private Archiver archiver;
 	
 	/**
 	 * The directory we will be archiving up.
 	 */
-	@Parameter(defaultValue = "${project.build.directory}", required = true)
+	@Parameter(property = "dmFilesDirectory", defaultValue = "${project.build.directory}/classes", required = true)
 	private File dmFilesDirectory;
 
 	/**
@@ -60,7 +60,7 @@ public class PackageMojo extends AbstractMojo {
 	/**
 	 * The output directory to write the archive to.
 	 */
-	@Parameter(defaultValue = "${project.build.directory}", required = true)
+	@Parameter(property = "outputDirectory", defaultValue = "${project.build.directory}", required = true)
 	private File outputDirectory;
 
 	/**

@@ -4,8 +4,6 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.apache.maven.it.Verifier;
 import org.apache.maven.it.util.ResourceExtractor;
@@ -19,9 +17,10 @@ public class BasicIT {
 		assertNotNull(testDir);
         assertTrue(testDir.exists());
         Verifier verifier = new Verifier(testDir.getAbsolutePath());
-        List<String> cliOptions = new ArrayList<String>();
-        cliOptions.add("-N");
-        verifier.executeGoal("package");
+        verifier.deleteDirectory("target");
+        verifier.setAutoclean(false);
+        verifier.executeGoal("install");
+        verifier.assertArtifactPresent("com.byond.byond-library-plugin.test", "basic", "1.0", "zip");
         verifier.verifyErrorFreeLog();
         verifier.resetStreams();
 	}

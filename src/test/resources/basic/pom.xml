@@ -21,7 +21,7 @@
 				<artifactId>byond-library-plugin</artifactId>
 				<version>1.0.0-SNAPSHOT</version>
 				<configuration>
-					<outputDirectory>target/test-harness/basic</outputDirectory>
+					<outputDirectory>target/test/basic</outputDirectory>
 				</configuration>
 				<extensions>true</extensions>
 			</plugin>
