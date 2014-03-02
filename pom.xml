@@ -14,7 +14,7 @@
 	<parent>
 		<groupId>com.byond</groupId>
 		<artifactId>byond-maven-parent</artifactId>
-		<version>1.0.8</version>
+		<version>1.0.9</version>
 	</parent>
 
 	<scm>
@@ -137,27 +137,51 @@
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-        			<artifactId>maven-install-plugin</artifactId>
+				<artifactId>maven-install-plugin</artifactId>
 				<executions>
-			        	<execution>
-			            		<id>it-test</id>
-			            		<phase>pre-integration-test</phase>
-			            		<goals>
-			              			<goal>install-file</goal>
-			            		</goals>
-			            		<configuration>
-			              			<file>${basedir}/target/${project.artifactId}-${project.version}.jar</file>
-			              			<groupId>${project.groupId}</groupId>
-			              			<artifactId>${project.artifactId}</artifactId>
-			              			<version>${project.version}</version>
-			              			<packaging>maven-plugin</packaging>
-			              			<pomFile>${basedir}/pom.xml</pomFile>
+					<execution>
+						<id>it-test</id>
+						<phase>pre-integration-test</phase>
+						<goals>
+							<goal>install-file</goal>
+						</goals>
+						<configuration>
+							<file>${basedir}/target/${project.artifactId}-${project.version}.jar</file>
+							<groupId>${project.groupId}</groupId>
+							<artifactId>${project.artifactId}</artifactId>
+							<version>${project.version}</version>
+							<packaging>maven-plugin</packaging>
+							<pomFile>${basedir}/pom.xml</pomFile>
 						</configuration>
-			        	</execution>
+					</execution>
 				</executions>
 			</plugin>
 		</plugins>
 	</build>
+	
+	<profiles>
+		<profile>
+			<id>release-disable-its</id>
+			<activation>
+				<property>
+					<name>env.IS_M2RELEASEBUILD</name>
+				</property>
+			</activation>
+			<build>
+				<pluginManagement>
+					<plugins>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-failsafe-plugin</artifactId>
+							<configuration>
+								<skipITs>true</skipITs>
+							</configuration>
+						</plugin>
+					</plugins>
+				</pluginManagement>
+			</build>
+		</profile>
+	</profiles>
 
 	<reporting>
 		<plugins>
